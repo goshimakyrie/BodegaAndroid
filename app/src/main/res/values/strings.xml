@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Bodegeishon</string>
+    <string name="company_name">Comercializadora Ángel</string>
+    <string name="app_subtitle">Sistema de Control y Gestión de Bodega</string>
+    <string name="login_title">Iniciar Sesión</string>
+    <string name="username_hint">Nombre de usuario</string>
+    <string name="password_hint">Contraseña</string>
+    <string name="btn_login_text">Iniciar Sesión</string>
+    <string name="btn_logout_text">Cerrar Sesión</string>
+    <string name="error_empty_fields">Por favor, ingrese el nombre de usuario y la contraseña.</string>
+    <string name="error_user_not_found">El usuario ingresado no existe.</string>
+    <string name="error_invalid_password">La contraseña es incorrecta.</string>
+    <string name="error_user_inactive">El usuario se encuentra inactivo. Contacte al administrador.</string>
+    <string name="welcome_message">Bienvenido, %1$s</string>
+    <string name="user_label">Usuario: %1$s</string>
+    <string name="role_label">Rol: %1$s</string>
+    <string name="session_active_title">Módulo de Sesión Activa</string>
+    <string name="admin_permissions_desc">Acceso de Administrador: Control total del sistema, gestión de usuarios, bodega e inventario.</string>
+    <string name="operator_permissions_desc">Acceso de Operador / Bodeguero: Gestión de inventario, recepción de productos, entradas y salidas de bodega.</string>
+    <string name="logout_toast">Sesión cerrada correctamente.</string>
+    <string name="test_accounts_title">Credenciales de prueba:</string>
+    <string name="test_accounts_info">• Admin: admin / admin123\n• Bodeguero: bodeguero / user123\n• Operador: operador / user123\n• Inactivo: inactivo / user123</string>
+</resources>
