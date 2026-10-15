@@ -6,17 +6,19 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.bumptech.glide.Glide;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText etUsername;
     private EditText etPassword;
     private TextView tvErrorMessage;
-    private Button btnLogin;
 
     private DatabaseHelper dbHelper;
     private SessionManager sessionManager;
@@ -36,10 +38,19 @@ public class LoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_login);
 
+        ImageView ivLogo = findViewById(R.id.iv_logo);
         etUsername = findViewById(R.id.et_username);
         etPassword = findViewById(R.id.et_password);
         tvErrorMessage = findViewById(R.id.tv_error_message);
-        btnLogin = findViewById(R.id.btn_login);
+        Button btnLogin = findViewById(R.id.btn_login);
+
+        // Load logo image from URL using Glide
+        String logoUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGFehvXOik-CYuMOcbnOUuuO6o6lCtctlSxI5JiriD_dorXJjOncoIWZc&s=10";
+        Glide.with(this)
+                .load(logoUrl)
+                .placeholder(R.mipmap.ic_launcher)
+                .error(R.mipmap.ic_launcher)
+                .into(ivLogo);
 
         btnLogin.setOnClickListener(v -> handleLogin());
     }
@@ -56,27 +67,28 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
+        // Prototype login logic: check DB if user exists, otherwise create prototype session
         User user = dbHelper.getUserByUsername(username);
 
-        if (user == null) {
-            showError(getString(R.string.error_user_not_found));
-            return;
+        if (user != null) {
+            if (!user.getPassword().equals(password)) {
+                showError(getString(R.string.error_invalid_password));
+                return;
+            }
+
+            if (!user.isActivo()) {
+                showError(getString(R.string.error_user_inactive));
+                return;
+            }
+
+            sessionManager.createLoginSession(user.getUsername(), user.getRole(), user.getNombre());
+        } else {
+            // Prototype mode: accept non-empty input without requiring hardcoded pre-loaded DB users
+            String role = username.toLowerCase().contains("admin") ? "Administrador" : "Bodeguero / Operador";
+            sessionManager.createLoginSession(username, role, username);
         }
 
-        if (!user.getPassword().equals(password)) {
-            showError(getString(R.string.error_invalid_password));
-            return;
-        }
-
-        if (!user.isActivo()) {
-            showError(getString(R.string.error_user_inactive));
-            return;
-        }
-
-        // Login successful
-        sessionManager.createLoginSession(user.getUsername(), user.getRole(), user.getNombre());
-        Toast.makeText(this, getString(R.string.welcome_message, user.getNombre()), Toast.LENGTH_SHORT).show();
-
+        Toast.makeText(this, getString(R.string.welcome_message, sessionManager.getNombre()), Toast.LENGTH_SHORT).show();
         navigateToMain();
     }
 

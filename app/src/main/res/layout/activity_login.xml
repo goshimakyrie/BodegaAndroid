@@ -14,11 +14,11 @@
         android:padding="24dp">
 
         <!-- Header Icon / Logo representation -->
+
         <ImageView
             android:id="@+id/iv_logo"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="32dp"
+            android:layout_width="213dp"
+            android:layout_height="182dp"
             android:contentDescription="@string/company_name"
             android:src="@mipmap/ic_launcher"
             app:layout_constraintEnd_toEndOf="parent"
@@ -140,50 +140,6 @@
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:cornerRadius="12dp" />
-
-            </LinearLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Test credentials info box -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_test_info"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
-            app:cardBackgroundColor="#E8F0FE"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="0dp"
-            app:strokeColor="#1A73E8"
-            app:strokeWidth="1dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card_login"
-            app:layout_constraintVertical_bias="1.0">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/test_accounts_title"
-                    android:textColor="#174EA6"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/test_accounts_info"
-                    android:textColor="#174EA6"
-                    android:textSize="12sp" />
 
             </LinearLayout>
 

@@ -34,9 +34,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COLUMN_NOMBRE + " TEXT" + ")";
 
         db.execSQL(CREATE_USERS_TABLE);
-
-        // Seed initial users for testing
-        seedUsers(db);
     }
 
     @Override
@@ -45,21 +42,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    private void seedUsers(SQLiteDatabase db) {
-        insertUserWithDb(db, new User("admin", "admin123", "Administrador", true, "Ángel Administrador"));
-        insertUserWithDb(db, new User("bodeguero", "user123", "Bodeguero", true, "Juan Bodeguero"));
-        insertUserWithDb(db, new User("operador", "user123", "Operador", true, "Carlos Operador"));
-        insertUserWithDb(db, new User("inactivo", "user123", "Operador", false, "Pedro Inactivo"));
-    }
-
-    private void insertUserWithDb(SQLiteDatabase db, User user) {
+    public long insertUser(User user) {
+        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_USERNAME, user.getUsername());
         values.put(COLUMN_PASSWORD, user.getPassword());
         values.put(COLUMN_ROLE, user.getRole());
         values.put(COLUMN_ACTIVO, user.isActivo() ? 1 : 0);
         values.put(COLUMN_NOMBRE, user.getNombre());
-        db.insert(TABLE_USERS, null, values);
+        return db.insert(TABLE_USERS, null, values);
     }
 
     public User getUserByUsername(String username) {

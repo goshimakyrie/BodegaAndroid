@@ -18,6 +18,4 @@
     <string name="admin_permissions_desc">Acceso de Administrador: Control total del sistema, gestión de usuarios, bodega e inventario.</string>
     <string name="operator_permissions_desc">Acceso de Operador / Bodeguero: Gestión de inventario, recepción de productos, entradas y salidas de bodega.</string>
     <string name="logout_toast">Sesión cerrada correctamente.</string>
-    <string name="test_accounts_title">Credenciales de prueba:</string>
-    <string name="test_accounts_info">• Admin: admin / admin123\n• Bodeguero: bodeguero / user123\n• Operador: operador / user123\n• Inactivo: inactivo / user123</string>
 </resources>
